@@ -6,6 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.metrics import ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score
 from sklearn.metrics import RocCurveDisplay
 df = pd.read_csv(r"C:\Users\Diya\Downloads\Titanic.csv")
 df = df[['Survived', 'Age', 'Sex', 'Pclass']]
@@ -21,6 +22,8 @@ model.fit(x_train, y_train)
 model.score(x_test, y_test)
 cross_val_score(model, x, y, cv=5).mean()
 y_predicted = model.predict(x_test)
+accuracy = accuracy_score(y_test, y_predicted)
+print("Accuracy:", accuracy)
 disp1=ConfusionMatrixDisplay.from_estimator(model, x_test, y_test, display_labels=['Perished', 'Survived'], cmap='Blues', xticks_rotation='vertical')
 plt.show()
 
